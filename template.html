@@ -35,8 +35,6 @@
 
         .header .title {
             flex-grow: 1;
-            background-color: #0070C0;
-            color: #fff;
             text-align: center;
             padding: 10px;
         }
@@ -50,7 +48,6 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-
             table-layout: fixed;
         }
 
@@ -59,14 +56,10 @@
             border: 1px solid #000;
             padding: 8px;
             vertical-align: top;
-
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
         }
 
         .section-header {
-            background-color: #0070C0;
+            background-color: #1B76FF;
             color: #fff;
             text-align: center;
             font-weight: bold;
@@ -74,13 +67,19 @@
         }
 
         .section-table th {
-            background-color: #0070C0;
+            width: 40%;
+            background-color: #1B76FF;
             color: #fff;
             font-weight: bold;
+            text-align: left;
         }
 
-        .content-table {
-            height: 100px;
+        .section-table td {
+            text-align: right;
+        }
+
+        .section-table td[colspan="2"] {
+            text-align: left;
         }
     </style>
 </head>
@@ -93,85 +92,103 @@
                     alt="Logo QuatroIn">
             </div>
             <div class="title">
-                <h1>Ordem de Serviço - ${numero_ordem}</h1>
-                <h2>${nome_trabalho}</h2>
-            </div>
-            <div class="logo">
-                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=142,fit=crop,q=95/YBgEW65jRRSz4kxW/favicon-YanzBObpVNhJoqaM.png"
-                    alt="Logo QuatroIn">
+                <h1>Ordem de Serviço</h1>
+                <h2>#2025-${numero_ordem}</h2>
+                <h2>Iluminação Pública</h2>
             </div>
         </div>
 
         <table class="section-table">
+            <colgroup>
+                <col style="width: 33.33%;">
+                <col style="width: 66.66%;">
+            </colgroup>
             <tr>
-                <td colspan="2" class="section-header">Cliente</td>
+                <td colspan="2" class="section-header">Dados da OS</td>
             </tr>
             <tr>
-                <th>Nome</th>
-                <th>Endereco</th>
+                <th>Número</th>
+                <td>#2025-${numero_ordem}</td>
             </tr>
             <tr>
-                <td class="content-table">${nome_cliente}</td>
-                <td class="content-table">${endereco_cliente}</td>
-            </tr>
-        </table>
-
-
-        <table class="section-table">
-            <tr>
-                <td colspan="2" class="section-header">Equipamento ou ativo</td>
+                <th>Data de Emissão</th>
+                <td>${data} - ${hora}</td>
             </tr>
             <tr>
-                <th>Nome</th>
-                <th>Modelo</th>
-            </tr>
-            <tr>
-                <td class="content-table">${nome_equipamento}</td>
-                <td class="content-table">${modelo_equipamento}</td>
-            </tr>
-            <tr>
-                <th>Marca</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td class="content-table">${marca_equipamento}</td>
-                <td class="content-table"></td>
+                <th>Emitido por</th>
+                <td>Sistema de Telegestão - q-Lúmen</td>
             </tr>
         </table>
 
         <table class="section-table">
+            <colgroup>
+                <col style="width: 33.33%;">
+                <col style="width: 66.66%;">
+            </colgroup>
             <tr>
-                <td colspan="2" class="section-header">Diagnóstico</td>
+                <td colspan="2" class="section-header">1. Identificação do Ponto de Iluminação</td>
             </tr>
             <tr>
-                <td colspan="2" class="content-table">${diagnostico}</td>
+                <th>ID do Dispositivo</th>
+                <td>${id_dispositivo}</td>
             </tr>
             <tr>
-                <td colspan="2" class="section-header">Solução</td>
+                <th>Coordenadas GPS</th>
+                <td>Latitude: ${lat} | Longitude: ${lng}</td>
+            </tr>
+        </table>
+
+        <table class="section-table">
+            <colgroup>
+                <col style="width: 33.33%;">
+                <col style="width: 66.66%;">
+            </colgroup>
+            <tr>
+                <td colspan="2" class="section-header">2. Detalhes da Ocorrência</td>
             </tr>
             <tr>
-                <td colspan="2" class="content-table">${solucao}</td>
+                <th>Tipo de Falha</th>
+                <td>Falha de acionamento noturno</td>
             </tr>
             <tr>
-                <td colspan="2" class="section-header">Peças trocadas</td>
+                <th>Data/Hora da Tentativa</th>
+                <td>${data} - ${hora}</td>
             </tr>
             <tr>
-                <td colspan="2" class="content-table">${pecas_trocadas}</td>
+                <th>Nº de Tentativas</th>
+                <td>8 (oito)</td>
+            </tr>
+            <tr>
+                <th>Status Final</th>
+                <td><strong>Falha confirmada</strong> - Lâmpada não respondeu ao comando</td>
             </tr>
         </table>
 
         <table class="section-table">
             <tr>
-                <th>Data do serviço</th>
-                <td>${data_hora}</td>
-                <th>Responsável</th>
-                <td>${nome_responsavel}</td>
+                <td colspan="2" class="section-header">3. Ação Requerida</td>
             </tr>
             <tr>
-                <th>Contatos</th>
-                <td>${contato_responsavel}</td>
-                <th>Total do Serviço</th>
-                <td>R$ ${total_servico}</td>
+                <td colspan="2">Inspeção e substituição da lâmpada no ponto citado</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="section-header">3.1. Observações Técnicas</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    A lâmpada apresentou comportamento anômalo após comando de rotina via sistema central.<br><br>
+                    Fotocélula e relé confirmaram ausência de consumo após tentativa de acionamento.<br><br>
+                    <a href="http://667d9a9d908fae0009771a4b.tago.run">Dados adicionais disponíveis na plataforma de gestão.</a>
+                </td>
+            </tr>
+        </table>
+
+        <table class="section-table">
+            <tr>
+                <td colspan="2" class="section-header">4. Contato</td>
+            </tr>
+            <tr>
+                <td colspan="2">manutencao@quatroin.com.br</td>
             </tr>
         </table>
     </div>
